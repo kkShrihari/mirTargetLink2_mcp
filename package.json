@@ -1,39 +1,33 @@
 {
   "name": "mirTargetLink2_mcp",
-  "description": "The poison of which weaker natures perish strengthens the strong — nor do they call it poison",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "MCP tool for fetching miRNA-target interactions from miRTargetLink 2.0 using TypeScript",
   "author": "shrihari k k",
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node lib/index.js",
-    "start:example": "node --no-warnings example/index.js",
+    "start": "ts-node src/index.ts",
+    "test": "ts-node src/tests/miRTargetLinkTool.test.ts",
     "build": "tsc",
-    "test": "jest index.test.ts",
-    "system:test": "jest index.system.test.ts",
-    "coverage": "jest --coverage index.test.ts",
-    "system:coverage": "jest --coverage index.system.test.ts",
-    "tslint": "tslint ./src/index.ts",
-    "prettier:base": "prettier",
-    "prettier:check": "yarn run prettier:base --list-different \"src/**/*.{ts,tsx}\"",
-    "prettier:write": "yarn run prettier:base --write \"src/**/*.{ts,tsx}\""
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json}\"",
+    "lint": "eslint 'src/**/*.{ts,tsx}'"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "cheerio": "^1.0.0-rc.12",
+    "p-queue": "^7.4.1",
+    "papaparse": "^5.4.1",
+    "puppeteer": "^24.27.0"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.1",
-    "@types/node": "^10.9.2",
-    "coveralls": "^3.0.2",
-    "husky": "^1.0.0-rc.13",
-    "jest": "^23.5.0",
-    "jest-junit": "^5.1.0",
-    "prettier": "^1.14.2",
-    "ts-jest": "^23.1.4",
-    "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.15.0",
-    "typescript": "^3.0.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn build && git add lib/"
-    }
+    "@types/cheerio": "^0.22.35",
+    "@types/node": "^22.0.0",
+    "@types/papaparse": "^5.3.16",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.3"
   }
 }

@@ -2,10 +2,14 @@
   "compilerOptions": {
     "target": "ES2015",
     "module": "commonjs",
-    "lib": ["es2015"],
+    "lib": ["es2015", "dom"],
     "outDir": "./lib",
+    "rootDir": "./src",
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.test.ts"]
