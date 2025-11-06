@@ -128,6 +128,15 @@ Expected output:
   "message": "45 validated targets found"
 }
 ```
+<img width="919" height="507" alt="image" src="https://github.com/user-attachments/assets/956739d8-ca30-433a-8951-99e9b20ad1a8" />
+<img width="1269" height="593" alt="image" src="https://github.com/user-attachments/assets/cbc39670-6d13-4e09-add9-b23555eeff03" />
+
+
+<img width="924" height="546" alt="image" src="https://github.com/user-attachments/assets/9e071ec2-69f2-4dfc-92d1-53a59dbf67a1" />
+<img width="1286" height="759" alt="image" src="https://github.com/user-attachments/assets/314fabb3-bc01-4c1b-96ee-e2134649c274" />
+
+<img width="926" height="799" alt="image" src="https://github.com/user-attachments/assets/f24f14f1-57ab-4383-bb87-b5a46d82fd9e" />
+<img width="1287" height="615" alt="image" src="https://github.com/user-attachments/assets/1ca30690-484b-44b1-86c1-274ccecd2788" />
 
 ---
 
