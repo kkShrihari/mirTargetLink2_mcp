@@ -138,6 +138,8 @@ Expected output:
 <img width="926" height="799" alt="image" src="https://github.com/user-attachments/assets/f24f14f1-57ab-4383-bb87-b5a46d82fd9e" />
 <img width="1287" height="615" alt="image" src="https://github.com/user-attachments/assets/1ca30690-484b-44b1-86c1-274ccecd2788" />
 
+<img width="390" height="591" alt="image" src="https://github.com/user-attachments/assets/7eac0ec9-7e6e-4b2b-982c-ccb0d3a367b8" />
+
 ---
 
 ## 📁 Project Structure
@@ -201,10 +203,6 @@ To integrate with **Claude Desktop (Anthropic MCP)**:
 
 ## 🧾 Citation
 
-> **Oki, S. & Ohta, T. (2024)**  
-> *ChIP-Atlas 3.0: a data-mining suite to explore chromosome architecture together with large-scale regulome data.*  
-> *Nucleic Acids Research*, Oxford University Press.  
-> DOI: [10.1093/nar/gkae358](https://doi.org/10.1093/nar/gkae358)
 
 ---
 
