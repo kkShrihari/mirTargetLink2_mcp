@@ -1,0 +1,35 @@
+{
+  "manifest_version": "0.3",
+  "name": "mirtargetlink2_mcp",
+  "display_name": "miRTargetLink 2 MCP",
+  "version": "1.0.0",
+  "description": "miRNA–target interaction analysis using miRTargetLink 2.0.",
+  "author": {
+    "name": "Shrihari Kamalan Kumarguruparan"
+  },
+  "license": "MIT",
+  "server": {
+    "type": "node",
+    "entry_point": "build/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["build/index.js"]
+    }
+  },
+  "tools": [
+    {
+      "name": "run_mirtargetlink",
+      "description": "Fetch validated or predicted miRNA–target interactions via miRTargetLink 2.0."
+    }
+  ],
+  "tools_generated": false,
+  "compatibility": {
+    "claude_desktop": ">=1.0.0",
+    "platforms": ["win32", "darwin", "linux"],
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  }
+}
+
+
