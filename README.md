@@ -148,9 +148,7 @@ mirTargetLink2_mcp/
 ├── src/
 │   ├── index.ts                 # MCP server entry point
 │   ├── tools/
-│   │   └── source.ts            # Core logic (axios + cheerio + puppeteer)
-│   └── tests/
-│       └── test.ts              # Local test runner
+│      └── source.ts            # Core logic (axios + cheerio + puppeteer)
 └── build/                       # Compiled JS output
 ```
 
