@@ -121,7 +121,17 @@ Expected output example:
   "mode": "validated",
   "interactionsCount": 45,
   "nodesCount": 20
+  "interactions": [
+    { "miRNA": "hsa-miR-21-5p", "target": "TP53", "support": "strong", "source": "miRTarBase", "experiment": "Luciferase assay", "reference": "PMID123456" },
+    { "miRNA": "hsa-miR-34a-5p", "target": "TP53", "support": "moderate", "source": "miRWalk", "experiment": "qPCR", "reference": "PMID234567" },
+    ...
+  ],
+  "nodes": [
+    { "source": "TP53", "categorySet": "KEGG", "category": "Apoptosis", "nodeType": "gene", "coveredEntities": "12" },
+    ...
+  ]
 }
+
 ```
 
 If the site blocks requests (HTTP 403 or 404), Puppeteer will automatically retry using a headless browser.
