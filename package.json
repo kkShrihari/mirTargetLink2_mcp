@@ -1,70 +1,30 @@
 {
-  "name": "mirtargetlink2_mcp",
+  "name": "mcp-ts-simple-template",
   "version": "1.0.0",
-  "description": "Claude-compatible MCP server for automated miRNA–target interaction retrieval and network analysis via miRTargetLink 2.0 (Oki & Ohta, NAR 2024)",
-  "author": "Shrihari Kamalan Kumarguruparan <shka00003@stud.uni-saarland.de>",
+  "description": "A simple TypeScript MCP server template for miRTargetLink 2",
+  "author": "Shrihari",
   "license": "MIT",
-  "private": false,
   "type": "module",
-  "main": "dist/src/index.js",
-  "keywords": [
-    "MCP",
-    "miRNA",
-    "bioinformatics",
-    "network-analysis",
-    "puppeteer",
-    "miRTargetLink",
-    "fastmcp",
-    "typescript",
-    "anthropic",
-    "Claude",
-    "NAR2024"
-  ],
+  "main": "build/index.js",
   "scripts": {
-    "clean": "rm -rf dist",
-    "build": "tsc",
-    "start": "npm run build && node dist/src/index.js",
-    "dev": "ts-node src/index.ts",
-    "test": "npm run build && node dist/src/tests/localTests.js",
-    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json}\"",
-    "lint": "eslint 'src/**/*.{ts,tsx}'",
-    "check": "tsc --noEmit",
-    "prepare": "npm run build"
+    "dev": "node --loader ts-node/esm src/index.ts",
+    "build": "tsc && chmod 755 build/index.js",
+    "start": "node build/index.js",
+    "start:build": "npm run build && npm start",
+    "test": "node --loader ts-node/esm src/tests/test.ts"
   },
   "dependencies": {
-    "axios": "^1.7.2",
+    "@modelcontextprotocol/sdk": "^1.22.0",
+    "axios": "^1.6.7",
     "cheerio": "^1.0.0-rc.12",
-    "cli-table3": "^0.6.5",
-    "fastmcp": "^3.22.0",
-    "fs-extra": "^11.3.2",
-    "p-queue": "^7.4.1",
-    "papaparse": "^5.5.3",
-    "puppeteer": "^24.27.0",
-    "xlsx": "^0.18.5",
-    "zod": "^3.25.76"
+    "dotenv": "^16.6.1",
+    "zod": "^3.25.76",
+    "puppeteer": "^23.5.3"
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.35",
-    "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.0.0",
-    "@types/papaparse": "^5.3.16",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0",
-    "eslint": "^8.57.0",
-    "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
-  },
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=9.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kkShrihari/mirTargetLink2_mcp"
-  },
-  "bugs": {
-    "url": "https://github.com/kkShrihari/mirTargetLink2_mcp/issues"
-  },
-  "homepage": "https://github.com/kkShrihari/mirTargetLink2_mcp#readme"
+    "typescript": "^5.6.3"
+  }
 }
