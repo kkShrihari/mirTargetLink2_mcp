@@ -191,11 +191,11 @@ Your tool will appear in the **“Tools”** tab under the name:
 
 ## 🧾 Citation
 
-If you use this module in academic work, please cite:
+If you used miRTargetLink 2.0 in your research please cite:
 
-> Oki & Ohta *et al.*,  
-> **miRTargetLink 2.0: microRNA–target interaction network analysis.**  
-> *Nucleic Acids Research*, Volume 51, Issue W1, July 2023, Pages W88–W95.  
+> Kern F, Aparicio-Puerta E, Li Y, Fehlmann T, Kehl T, Wagner V, Ray K, Ludwig N, Lenhof HP, Meese E, Keller A.
+> **miRTargetLink 2.0—interactive miRNA target gene and target pathway networks.**
+> *Nucleic Acids Research 2021 doi: 10.1093/nar/gkab297* 
 > [https://ccb-compute.cs.uni-saarland.de/mirtargetlink2](https://ccb-compute.cs.uni-saarland.de/mirtargetlink2)
 
 ---
