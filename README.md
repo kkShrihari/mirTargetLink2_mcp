@@ -13,7 +13,6 @@ Developed at Saarland University (Bioinformatics) for network-based microRNA–t
 It exposes the data as a **Claude MCP Tool**, supporting:
 - 🧪 *Validated* interactions (experimentally verified)
 - 💻 *Predicted* interactions (computationally inferred)
-- 🌐 *Network-level* graphs (visualizable interaction networks)
 
 ---
 
@@ -37,7 +36,7 @@ It exposes the data as a **Claude MCP Tool**, supporting:
 | **Node.js** | ≥ 18.x | `sudo apt install nodejs` or [Download](https://nodejs.org/) |
 | **npm** | ≥ 9.x | Comes with Node |
 | **Git** | any | `sudo apt install git` |
-| **Chromium (optional)** | any | `sudo apt install chromium-browser` (for Puppeteer) |
+
 
 ---
 
