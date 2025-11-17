@@ -1,54 +1,43 @@
-# 🧬 miRTargetLink2_MCP
+# 🧬 miRTargetLink2 MCP
 
-**A TypeScript-based MCP module to retrieve validated, predicted, and network-level miRNA–target interactions from [miRTargetLink 2.0](https://ccb-web.cs.uni-saarland.de/mirtargetlink/)**
+**A TypeScript-based MCP (Model Context Protocol) server for automated retrieval of miRNA–target interaction data from [miRTargetLink 2.0](https://ccb-compute.cs.uni-saarland.de/mirtargetlink2/)**
 
-Developed as part of the Saarland University bioinformatics tool ecosystem.  
-Implements **Anthropic MCP-compatible interfaces**, with **local testing and full automation**.
+Developed at Saarland University (Bioinformatics) for network-based microRNA–target interaction exploration, with integration for **Anthropic’s Claude Desktop** via MCP.
 
 ---
 
 ## 📘 Overview
 
-`miRTargetLink2_MCP` provides programmatic access to **miRNA–target interaction data** from the *miRTargetLink 2.0* web resource (Oki & Ohta, NAR 2024).  
-The module supports three major modes:
-- Experimentally **validated** targets  
-- Computationally **predicted** targets  
-- Network-level **interaction graphs**
+`miRTargetLink2_MCP` enables **automated extraction of miRNA–target interactions** (validated, predicted, and network-level) from the **miRTargetLink 2.0** web platform.
 
-The module is built with:
-- ⚙️ **TypeScript + Node.js**
-- 🧩 **fastMCP** (Anthropic MCP integration)
-- 🕵️ **Puppeteer** for web scraping
-- 📊 **cli-table3** for readable console output
+It exposes the data as a **Claude MCP Tool**, supporting:
+- 🧪 *Validated* interactions (experimentally verified)
+- 💻 *Predicted* interactions (computationally inferred)
+- 🌐 *Network-level* graphs (visualizable interaction networks)
 
 ---
 
-## 🧱 Features
+## 🧱 Core Stack
 
-| Mode | Description | Output |
-|------|--------------|---------|
-| `validated` | Fetches experimentally validated miRNA–target pairs | Gene name, evidence type, PubMed link |
-| `predicted` | Fetches computationally predicted pairs | Gene name, prediction confidence |
-| `network` | Retrieves full interaction networks | JSON graph (nodes & edges) |
+| Component | Purpose | Notes |
+|------------|----------|-------|
+| **TypeScript + Node.js (ESM)** | Main runtime | Modern type-safe backend |
+| **@modelcontextprotocol/sdk** | MCP interface | Provides `McpServer` + `StdioTransport` |
+| **Axios** | HTTP client | Handles web requests and form POSTs |
+| **Cheerio** | HTML parser | Extracts tabular data from miRTargetLink pages |
+| **Puppeteer** *(optional)* | Browser automation | Used as fallback if the server enforces CSRF |
+| **Zod** | Input validation | Ensures safe query structure |
 
 ---
 
-## ⚙️ Requirements
+## ⚙️ System Requirements
 
-Make sure you have the following installed:
-
-| Tool | Version | Install Command |
-|------|----------|----------------|
-| **Node.js** | ≥ 18.x | [Download](https://nodejs.org/) or `sudo apt install nodejs` |
+| Tool | Minimum Version | Install Command |
+|------|------------------|----------------|
+| **Node.js** | ≥ 18.x | `sudo apt install nodejs` or [Download](https://nodejs.org/) |
 | **npm** | ≥ 9.x | Comes with Node |
-| **Chromium / Google Chrome** | Any | `sudo apt install chromium-browser` |
-| **Git** | Any | `sudo apt install git` |
-
-> 💡 Puppeteer requires a Chrome/Chromium binary.  
-> Verify your browser path with:
-> ```bash
-> which chromium-browser
-> ```
+| **Git** | any | `sudo apt install git` |
+| **Chromium (optional)** | any | `sudo apt install chromium-browser` (for Puppeteer) |
 
 ---
 
@@ -65,166 +54,160 @@ cd mirTargetLink2_mcp
 npm install
 ```
 
-If you see Puppeteer Chrome download errors, skip it:
+If Puppeteer’s Chrome download fails:
 ```bash
 PUPPETEER_SKIP_DOWNLOAD=true npm install puppeteer
 ```
 
 ---
 
-## 🧰 Included Dependencies
+## 🧩 Included Dependencies
 
-All dependencies are pre-declared in `package.json`:
-
-**Core**
+**Runtime Dependencies**
 ```json
-"axios", "cheerio", "p-queue", "papaparse", "puppeteer", "cli-table3", "fs-extra", "xlsx", "zod", "fastmcp"
+"@modelcontextprotocol/sdk": "^1.22.0",   // MCP communication layer
+"axios": "^1.6.7",                        // Handles HTTP(S) requests
+"cheerio": "^1.0.0-rc.12",                // Parses HTML pages
+"dotenv": "^16.6.1",                      // Loads environment variables
+"zod": "^3.25.76",                        // Validates query input
+"puppeteer": "^23.5.3"                    // Automates browser actions (fallback)
 ```
 
-**Development**
+**Development Dependencies**
 ```json
-"typescript", "ts-node", "eslint", "prettier",
-"@types/node", "@types/cheerio", "@types/fs-extra", "@types/papaparse"
+"typescript": "^5.6.3",                   // TypeScript compiler
+"ts-node": "^10.9.2",                     // Runs TS files directly
+"@types/node": "^22.0.0",                 // Node.js type definitions
+"@types/cheerio": "^0.22.35"              // Cheerio type definitions
 ```
 
 ---
 
-## 🚀 Running the MCP Server
+## 🧰 Build and Run
 
-To build and run the MCP module:
+### 🛠️ Build the project
+```bash
+npm run build
+```
+
+### ▶️ Run the MCP Server
 ```bash
 npm start
 ```
 
-If everything works, you’ll see:
+Expected output:
 ```
-🚀 miRTargetLink2_MCP server initialized and ready.
-[FastMCP warning] could not infer client capabilities after 10 attempts. Connection may be unstable.
+[INFO] Starting miRTargetLink2 MCP server...
+[INFO] Connecting server via stdio transport...
+[INFO] miRTargetLink 2 MCP server is live and ready.
 ```
 
-That message is normal — it just means Claude isn’t connected yet.
+If this appears and stays active — your server is healthy.  
+If it exits early in Claude, check `stderr` logs inside Claude’s Developer Console.
 
 ---
 
-## 🧪 Local Testing
+## 🧪 Local Testing (without Claude)
 
-You can run built-in tests without Claude:
-
+Test using your local `test.ts` file:
 ```bash
-npm test
+npm run test
 ```
 
-Or directly run the test file:
-```bash
-node --loader ts-node/esm src/tests/localTests.ts
-```
-
-Expected output:
+Expected output example:
 ```json
 {
   "success": true,
-  "query": "hsa-miR-21-5p",
+  "query": "TP53",
   "mode": "validated",
-  "message": "45 validated targets found"
+  "interactionsCount": 45,
+  "nodesCount": 20
 }
 ```
-<img width="919" height="507" alt="image" src="https://github.com/user-attachments/assets/956739d8-ca30-433a-8951-99e9b20ad1a8" />
-<img width="1269" height="593" alt="image" src="https://github.com/user-attachments/assets/cbc39670-6d13-4e09-add9-b23555eeff03" />
 
-
-<img width="924" height="546" alt="image" src="https://github.com/user-attachments/assets/9e071ec2-69f2-4dfc-92d1-53a59dbf67a1" />
-<img width="1286" height="759" alt="image" src="https://github.com/user-attachments/assets/314fabb3-bc01-4c1b-96ee-e2134649c274" />
-
-<img width="926" height="799" alt="image" src="https://github.com/user-attachments/assets/f24f14f1-57ab-4383-bb87-b5a46d82fd9e" />
-<img width="1287" height="615" alt="image" src="https://github.com/user-attachments/assets/1ca30690-484b-44b1-86c1-274ccecd2788" />
-
-<img width="840" height="331" alt="image" src="https://github.com/user-attachments/assets/43712a4b-207a-4bbc-8bd4-08a97c1f63cb" />
-<img width="681" height="691" alt="image" src="https://github.com/user-attachments/assets/f0c59734-a582-4e9c-9b2c-a79885f96650" />
-<img width="773" height="419" alt="image" src="https://github.com/user-attachments/assets/de6fd31a-3303-46d7-a114-162c55df3b4e" />
-
+If the site blocks requests (HTTP 403 or 404), Puppeteer will automatically retry using a headless browser.
 
 ---
 
-## 📁 Project Structure
+## ⚙️ Project Structure
 
 ```
 mirTargetLink2_mcp/
-├── LICENSE
-├── README.md
-├── package.json
-├── tsconfig.json
-├── manifest.json
-├── dist/
+├── manifest.json                # MCP manifest for Claude
+├── package.json                 # Project dependencies & scripts
+├── tsconfig.json                # TypeScript configuration
 ├── src/
-│   ├── index.ts                  # MCP server entry point
+│   ├── index.ts                 # MCP server entry point
 │   ├── tools/
-│   │   └── miRTargetLinkTool.ts  # Core scraper + logic
+│   │   └── source.ts            # Core logic (axios + cheerio + puppeteer)
 │   └── tests/
-│       └── localTests.ts         # Local execution test
+│       └── test.ts              # Local test runner
+└── build/                       # Compiled JS output
 ```
 
 ---
 
-## 🧩 Using with Claude / MCP
+## 🧩 Integration with Claude Desktop
 
-To integrate with **Claude Desktop (Anthropic MCP)**:
+To make this module accessible inside Claude:
 
-1. Copy or link your built `.dxt` package into Claude’s MCP tools directory:
-   ```
-   ~/Library/Application Support/Claude/mcp/mirTargetLink2_MCP.dxt
-   ```
-   or
-   ```
-   ~/.config/Claude/mcp/
-   ```
+### Step 1: Package into `.dxt`
+```bash
+zip -r mirTargetLink2_mcp.dxt manifest.json package.json build node_modules
+```
 
-2. Add to Claude’s config file (`claude_desktop_config.json`):
-   ```json
-   {
-     "mcpServers": {
-       "mirTargetLink2": {
-         "command": "node",
-         "args": ["dist/src/index.js"],
-         "workingDirectory": "/path/to/mirTargetLink2_mcp"
-       }
-     }
-   }
-   ```
+### Step 2: Move to Claude MCP directory
 
-3. Restart Claude Desktop — your MCP tool should now appear in the **Tools** menu.
+| OS | Path |
+|----|------|
+| macOS | `~/Library/Application Support/Claude/mcp/` |
+| Linux | `~/.config/Claude/mcp/` |
+| Windows | `%APPDATA%\Claude\mcp\` |
+
+### Step 3: Restart Claude
+
+Your tool will appear in the **“Tools”** tab under the name:  
+> `miRTargetLink 2 MCP`
 
 ---
 
-## 🧠 Notes
+## 🧠 Troubleshooting
 
-- Works offline with cached pages (if supported).
-- No API keys required.
-- Safe error handling for downtime or missing results.
-- Runs on Linux, macOS, and Windows.
+| Error | Likely Cause | Fix |
+|--------|--------------|-----|
+| `Server transport closed unexpectedly` | Claude terminated the MCP connection | Keep process alive with `await new Promise(() => {})` |
+| `403 Forbidden (CSRF verification failed)` | miRTargetLink2 blocks non-browser POSTs | Use Puppeteer fallback (already handled) |
+| `404 Not Found` | Site endpoint changed | Check base URL in `source.ts` |
+| `EADDRINUSE: Port 6277` | MCP Inspector still running | Kill with `pkill -f modelcontextprotocol` |
 
 ---
 
 ## 🧾 Citation
 
+If you use this module in academic work, please cite:
+
+> Oki & Ohta *et al.*,  
+> **miRTargetLink 2.0: microRNA–target interaction network analysis.**  
+> *Nucleic Acids Research*, Volume 51, Issue W1, July 2023, Pages W88–W95.  
+> [https://ccb-compute.cs.uni-saarland.de/mirtargetlink2](https://ccb-compute.cs.uni-saarland.de/mirtargetlink2)
 
 ---
 
 ## 👤 Author
 
 **Shrihari Kamalan Kumarguruparan**  
+Bioinformatics, Saarland University  
 📧 `shka00003@stud.uni-saarland.de`  
-University of Saarland — Bioinformatics  
 GitHub: [kkShrihari](https://github.com/kkShrihari)
 
 ---
 
-## 🧩 Quick Setup (for Supervisors / Reviewers)
+### ✅ Quick Setup for Reviewers
 
 ```bash
 git clone https://github.com/kkShrihari/mirTargetLink2_mcp.git
 cd mirTargetLink2_mcp
 npm install
-PUPPETEER_SKIP_DOWNLOAD=true npm install puppeteer
 npm run build
 npm start
 ```
