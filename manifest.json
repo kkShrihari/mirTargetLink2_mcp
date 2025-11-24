@@ -19,7 +19,7 @@
   "tools": [
     {
       "name": "run_mirtargetlink",
-      "description": "Fetch validated or predicted miRNA–target interactions via miRTargetLink 2.0."
+      "description": "Fetch validated or predicted miRNA–target interactions via miRTargetLink 2."
     }
   ],
   "tools_generated": false,
