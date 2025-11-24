@@ -15,14 +15,14 @@ process.on("unhandledRejection", (reason) => {
 
 console.error("[INFO] Starting miRTargetLink2 MCP server...");
 
-// === Initialize Server ===
+// Initialize Server 
 const server = new McpServer({
   name: "miRTargetLink 2 MCP",
   version: "1.0.0",
   //description: "MCP server for miRTargetLink 2.0 analysis",
 });
 
-// === Main Analysis Tool ===
+// Main Analysis Tool
 server.tool(
   "run_mirtargetlink",
   "Run miRTargetLink 2.0 Analysis",
@@ -52,7 +52,7 @@ server.tool(
   }
 );
 
-// === Connect transport ===
+// Connect transport 
 const transport = new StdioServerTransport();
 
 async function startServer() {
