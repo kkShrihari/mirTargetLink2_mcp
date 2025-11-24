@@ -2,7 +2,7 @@
   "name": "mcp-ts-simple-template",
   "version": "1.0.0",
   "description": "A simple TypeScript MCP server template for miRTargetLink 2",
-  "author": "Shrihari",
+  "author": "Shrihari K K",
   "license": "MIT",
   "type": "module",
   "main": "build/index.js",
