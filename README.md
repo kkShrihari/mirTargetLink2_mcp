@@ -191,8 +191,6 @@ Your tool will appear in the **“Tools”** tab under the name:
 
 ## 🧾 Citation
 
-If you used miRTargetLink 2.0 in your research please cite:
-
 > Kern F, Aparicio-Puerta E, Li Y, Fehlmann T, Kehl T, Wagner V, Ray K, Ludwig N, Lenhof HP, Meese E, Keller A.
 > **miRTargetLink 2.0—interactive miRNA target gene and target pathway networks.**
 > *Nucleic Acids Research 2021 doi: 10.1093/nar/gkab297* 
