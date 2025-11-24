@@ -1,7 +1,7 @@
 
 // src/tools/miRTargetLinkTool.ts
 import { Page } from "puppeteer";
-import Table from "cli-table3"; // ✅ ESM-compatible import
+import Table from "cli-table3"; 
 
 export const sleep = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
@@ -63,7 +63,7 @@ export async function extractInteractionTable(page: Page, limit = 10) {
   });
 
   interactions.forEach((r) => interactionTable.push(r));
-  console.log("\n📊 Interaction Table (Top 10):");
+  console.log("\n Interaction Table (Top 10):");
   console.log(interactionTable.toString());
 }
 
@@ -177,7 +177,7 @@ export async function runMiRTargetLink(input: { query: string; mode?: string }) 
 
   // --- Cleanup ---
   await browser.close();
-  console.log(`✅ Completed miRTargetLink analysis for: ${query}`);
+  console.log(` Completed miRTargetLink analysis for: ${query}`);
 
   // Return structured result for MCP
   return {
@@ -187,3 +187,4 @@ export async function runMiRTargetLink(input: { query: string; mode?: string }) 
     message: `miRTargetLink 2.0 analysis completed successfully for '${query}' in mode '${mode}'.`,
   };
 }
+
